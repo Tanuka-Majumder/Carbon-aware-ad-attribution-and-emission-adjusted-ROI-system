@@ -1,0 +1,27 @@
+[project]
+name = "carbon-aware-attribution"
+version = "0.1.0"
+
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "kafka-python",
+  "psycopg2-binary",
+  "psycopg[c]",
+  "redis",
+  "orjson",
+  "prometheus-client",
+  "sqlalchemy",
+  "confluent-kafka",
+  "pydantic-settings>=2.1",
+  "numpy",
+  "cvxpy",
+  "scipy",
+  "scikit-learn",
+  "structlog",
+  "pydantic",
+  "orjson"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

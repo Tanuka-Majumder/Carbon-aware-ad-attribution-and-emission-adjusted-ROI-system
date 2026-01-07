@@ -1,0 +1,18 @@
+{
+  "total_budget_usd": 1000,
+  "max_total_carbon_g": 5000,
+  "campaigns": [
+    {
+      "campaign_id": "c1",
+      "max_budget_usd": 800,
+      "expected_conversions_per_usd": 0.03,
+      "expected_carbon_g_per_usd": 7
+    },
+    {
+      "campaign_id": "c2",
+      "max_budget_usd": 800,
+      "expected_conversions_per_usd": 0.025,
+      "expected_carbon_g_per_usd": 2
+    }
+  ]
+}
