@@ -1,4 +1,4 @@
-# 🌿 Carbon-aware ad attribution platform and emission adjusted ROI system
+# 🌿 Carbon-aware ad attribution and emission adjusted ROI system
 
 
 
