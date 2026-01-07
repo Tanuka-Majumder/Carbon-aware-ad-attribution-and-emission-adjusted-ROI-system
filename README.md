@@ -1,28 +1,12 @@
-# Carbon-Aware Attribution Platform
+# 🌿 Carbon-Aware Attribution Platform
 
 
 
-## Overview
+## 🚀 Overview
 
-This repository delivers a high-throughput, production-grade platform for carbon-aware marketing attribution and ROI optimization, engineered for scale, reliability, and measurable impact. It combines distributed batch ML pipelines, real-time event streaming, and robust APIs for data-driven decision-making, with full support for automated containerized deployment, cloud-native infrastructure, and CI/CD.
+It is a production-grade data and optimization platform for large-scale advertising attribution. It processes high-volume ad-event streams, constructs multi-touch attribution signals, and applies constraint-based optimization to compute emission-adjusted performance metrics and budget allocations. The system is architected around distributed batch computation, real-time streaming ingestion, and API-driven serving, and is designed to act as a clean integration layer for downstream ML models that consume attribution, ESG, and optimization signals in decision-making pipelines.
 
-## Features
-
-
-
-- **Distributed Batch ML Pipeline:**
-  - Apache Spark jobs for scalable feature engineering and model training (designed and validated for 50M+ events/month scale using Kafka + Spark—architecture-level scalability).
-  - Persistent model storage (joblib) for fast, reliable inference.
-  
-## Design Principles
-- Clear separation of batch ML, real-time streaming, and serving layers
-- Deterministic, reproducible ML training with persisted artifacts
-- ESG metrics derived from first principles, not heuristic dashboards
-- Infrastructure-as-code and container-first deployment model
-
-## Features
-
-
+## ✨ Features
 
 - **Distributed Batch ML Pipeline:**
   - Apache Spark jobs for scalable feature engineering and model training (designed and validated for 50M+ events/month scale using Kafka + Spark—architecture-level scalability).
@@ -39,9 +23,15 @@ This repository delivers a high-throughput, production-grade platform for carbon
   - Terraform scaffolding for AWS/GCP infrastructure provisioning.
   - CI/CD via GitHub Actions enabling automated, repeatable deployments.
   - Kubernetes-ready (stateless services, externalized state, and containerized workloads).
+ 
+## 🧩 Design Principles
 
-## Architecture
+- Clear separation of batch ML, real-time streaming, and serving layers
+- Deterministic, reproducible ML training with persisted artifacts
+- ESG metrics derived from first principles, not heuristic dashboards
+- Infrastructure-as-code and container-first deployment model
 
+## 🏛️ Architecture
 
 ```
 [Batch Spark Jobs] → [Model Artifacts] → [API Service] ← [Stream Processor]
@@ -50,9 +40,10 @@ This repository delivers a high-throughput, production-grade platform for carbon
      |                |                   |                |
    [AWS/GCP]      [Kubernetes]         [CI/CD]         [Terraform]
 ```
+The architecture cleanly decouples ingestion, ML computation, and serving to enable independent scaling and fault isolation.
 
 
-## End-to-End Setup & Workflow
+## 🔧 End-to-End Setup & Workflow
 
 
 
@@ -63,7 +54,7 @@ This repository delivers a high-throughput, production-grade platform for carbon
 - Apache Spark, Kafka, Redis, Postgres (all run via Docker Compose)
 - AWS/GCP account (for cloud deployment)
 
-### Step-by-Step Workflow
+### 🪜 Step-by-Step Workflow
 
 1. **Clone and bootstrap the repository**
   ```bash
@@ -71,18 +62,18 @@ This repository delivers a high-throughput, production-grade platform for carbon
   cd carbon-aware-attribution
   ```
 
-2. **Build and start all services (fully automated, production-grade, cloud-ready)**
+2. **Build and start all services (fully automated, cloud-ready)**
   ```bash
   docker compose build
   docker compose up -d
   ```
 
 3. **Run distributed batch jobs for feature engineering and ML model training (only after feature/model changes)**
-   - Feature engineering (scalable, Spark-based, proven at 50M+ events/month):
+   - Feature engineering:
      ```bash
      docker compose exec api python batch/spark/job_daily_features.py
      ```
-   - Model training (robust, production ML, impact-driven):
+   - Model training:
      ```bash
      docker compose exec api python batch/spark/job_train_models.py
      ```
@@ -106,14 +97,14 @@ This repository delivers a high-throughput, production-grade platform for carbon
      ```
    - For real data, connect your event pipeline to Kafka for continuous ingestion and processing.
 
-7. **Query API endpoints and use the dashboard (impact-driven, fully automated)**
+7. **Query API endpoints and use the dashboard**
   - Attribution: `/v1/attribution/channels`
   - Anomaly detection: `/v1/anomaly/score`
   - Budget optimizer: `/v1/budget/optimize`
   - Health: `/v1/health`
   - All dashboard metrics and visualizations are API-driven and update automatically—no manual data push required.
 
-8. **End-to-end integration checklist (FAANG-level reliability, scale & impact)**
+8. **End-to-end integration checklist**
   - Build and start all services (Docker Compose, cloud-ready)
   - (Optional) Run distributed batch jobs for feature engineering and ML model training if features/models change
   - Restart API to load new model/data
@@ -122,13 +113,13 @@ This repository delivers a high-throughput, production-grade platform for carbon
   - All results and metrics are visible in the dashboard, updated from API endpoints
   - No manual data push to dashboard is needed
 
-### Notes
+### 📝 Notes
 - If you change ML features or training logic, rerun batch jobs and restart the API.
 - All anomaly detection, optimizer, and attribution features are available via API and reflected in the dashboard.
 - For production, automate batch jobs and service restarts as needed.
 
 
-### API Endpoints
+### 🔌 API Endpoints
 
 
 **Key API Endpoints**
@@ -170,14 +161,14 @@ This repository delivers a high-throughput, production-grade platform for carbon
 - **Real-Time Campaign Metrics**
   - `GET /v1/rt/campaign/{campaign_id}` → `{ "campaign_id": ..., "metrics": { ... } }`
 
-### Testing
+### 🧪 Testing
 
 ```bash
 cd carbon_aware_attribution
 python test_optimize.py
 ```
 
-### Development
+### 🛠️ Development
 
 - All code is PEP8-compliant and linted.
 - Configuration via `pyproject.toml` and environment variables.
