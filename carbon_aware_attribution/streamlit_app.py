@@ -15,7 +15,7 @@ DEFAULT_API_URL_DOCKER = "http://api:8000"
 API_BASE_URL = os.getenv("API_BASE_URL", DEFAULT_API_URL_LOCAL)
 TIMEOUT_S = float(os.getenv("API_TIMEOUT_S", "10"))
 
-# Carbon factors (used only if backend doesn't return emissions explicitly)
+# Carbon factors 
 CHANNEL_EMISSIONS_G = {
     "email": 0.3,
     "display": 1.2,
@@ -157,7 +157,7 @@ def fetch_journeys() -> pd.DataFrame:
     return df
 
 # =========================
-# Metric computation (uses backend data if present)
+# Metric computation 
 # =========================
 def ensure_numeric(df: pd.DataFrame, col: str) -> None:
     if col in df.columns:
@@ -240,7 +240,7 @@ def fmt(x: float, digits: int = 2) -> str:
 # =========================
 # UI
 # =========================
-st.title("🌿 AdEco — Carbon-Aware Ad Attribution & Emission-Adjusted ROI")
+st.title("🌿 Carbon-Aware Ad Attribution & Emission-Adjusted ROI System")
 st.caption("Streamlit dashboard for attribution, Green Score, and ESG-aware KPIs.")
 
 
@@ -275,7 +275,7 @@ tabs = st.tabs([
 # Overview
 # -------------------------
 with tabs[0]:
-    st.subheader("Derived ESG KPI Cards")
+    st.subheader("Computed ESG KPIs")
 
     # Prefer journey-level for totals; fallback to channel KPIs; fallback to channel weights with emissions only
     base_df = None
