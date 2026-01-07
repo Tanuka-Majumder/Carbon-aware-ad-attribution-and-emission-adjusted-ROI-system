@@ -8,7 +8,7 @@ It is a production-grade data and optimization platform for large-scale advertis
 
 ## ✨ Features
 
-- **Distributed Batch ML Pipeline:**
+- **Distributed Batch ML Training & Feature Engineering Pipeline:**
   - Apache Spark jobs for scalable feature engineering and model training (designed and validated for 50M+ events/month scale using Kafka + Spark—architecture-level scalability).
   - Persistent model storage (joblib) for fast, reliable inference.
 - **Real-Time Stream Processor:**
@@ -30,6 +30,9 @@ It is a production-grade data and optimization platform for large-scale advertis
 - Deterministic, reproducible ML training with persisted artifacts
 - ESG metrics derived from first principles, not heuristic dashboards
 - Infrastructure-as-code and container-first deployment model
+- ML models are trained offline to learn attribution and anomaly-scoring parameters
+from historical data, while convex optimization is applied online to enforce
+carbon and budget constraints during allocation.
 
 ## 🏛️ Architecture
 
@@ -112,6 +115,13 @@ The architecture cleanly decouples ingestion, ML computation, and serving to ena
   - Start Streamlit dashboard (API-driven, real-time)
   - All results and metrics are visible in the dashboard, updated from API endpoints
   - No manual data push to dashboard is needed
+
+## 📊 System Validation & Observability
+<img width="1453" height="640" alt="image" src="https://github.com/user-attachments/assets/46843f5a-dc55-4b44-9d6d-c63a9232b013" />
+
+The Streamlit dashboard consumes production APIs exclusively and is used for
+end-to-end validation of attribution, emissions, and ROI metrics.
+
 
 ### 📝 Notes
 - If you change ML features or training logic, rerun batch jobs and restart the API.
