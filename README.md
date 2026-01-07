@@ -2,11 +2,7 @@
 
 ## Overview
 
-This repository delivers a high-throughput, production-grade platform for carbon-aware marketing attribution and ROI optimization, engineered for scale, reliability, and measurable impact. It combines distributed batch ML pipelines, real-time event streaming, and robust APIs for data-driven decision-making, with full support for automated containerized deployment, cloud-native infrastructure, and CI/CD. 
-**Proven Results:**
-- Processes 50M+ events/month in production
-- Reduces carbon per conversion by 18% while maintaining performance KPIs
-- Deployed on AWS/GCP with zero-downtime CI/CD
+This repository delivers a high-throughput, production-grade platform for carbon-aware marketing attribution and ROI optimization, engineered for scale, reliability, and measurable impact. It combines distributed batch ML pipelines, real-time event streaming, and robust APIs for data-driven decision-making, with full support for automated containerized deployment, cloud-native infrastructure, and CI/CD.
 
 ## Features
 
@@ -86,11 +82,6 @@ This repository delivers a high-throughput, production-grade platform for carbon
   streamlit run carbon_aware_attribution/streamlit_app.py
   ```
 
-6. **Create Kafka topic (required for event streaming)**
-  - Kafka does not auto-create topics in this setup. Run this command once after starting containers:
-    ```bash
-    docker compose exec kafka kafka-topics --create --topic ad_events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
-    ```
 
 6. **Push or generate data/events (real-time, scalable ingestion)**
    - To generate sample events for Kafka:
