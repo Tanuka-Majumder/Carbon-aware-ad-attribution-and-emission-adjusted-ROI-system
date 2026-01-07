@@ -1,5 +1,7 @@
 # Carbon-Aware Attribution Platform
 
+
+
 ## Overview
 
 This repository delivers a high-throughput, production-grade platform for carbon-aware marketing attribution and ROI optimization, engineered for scale, reliability, and measurable impact. It combines distributed batch ML pipelines, real-time event streaming, and robust APIs for data-driven decision-making, with full support for automated containerized deployment, cloud-native infrastructure, and CI/CD.
@@ -9,7 +11,21 @@ This repository delivers a high-throughput, production-grade platform for carbon
 
 
 - **Distributed Batch ML Pipeline:**
-  - Apache Spark jobs for scalable feature engineering and model training (proven at 50M+ events/month).
+  - Apache Spark jobs for scalable feature engineering and model training (designed and validated for 50M+ events/month scale using Kafka + Spark—architecture-level scalability).
+  - Persistent model storage (joblib) for fast, reliable inference.
+  
+## Design Principles
+- Clear separation of batch ML, real-time streaming, and serving layers
+- Deterministic, reproducible ML training with persisted artifacts
+- ESG metrics derived from first principles, not heuristic dashboards
+- Infrastructure-as-code and container-first deployment model
+
+## Features
+
+
+
+- **Distributed Batch ML Pipeline:**
+  - Apache Spark jobs for scalable feature engineering and model training (designed and validated for 50M+ events/month scale using Kafka + Spark—architecture-level scalability).
   - Persistent model storage (joblib) for fast, reliable inference.
 - **Real-Time Stream Processor:**
   - Kafka-based event streaming and ingestion, engineered for low-latency, high-throughput processing.
@@ -20,9 +36,9 @@ This repository delivers a high-throughput, production-grade platform for carbon
   - Pydantic v2 configuration with environment variable support for robust, secure deployments.
 - **Cloud-Native Infrastructure:**
   - Docker Compose for local orchestration and rapid prototyping.
-  - Terraform templates for automated cloud provisioning (AWS/GCP).
-  - CI/CD via GitHub Actions for zero-downtime, automated deployments.
-  - Kubernetes-ready for horizontal scaling and reliability.
+  - Terraform scaffolding for AWS/GCP infrastructure provisioning.
+  - CI/CD via GitHub Actions enabling automated, repeatable deployments.
+  - Kubernetes-ready (stateless services, externalized state, and containerized workloads).
 
 ## Architecture
 
@@ -114,29 +130,45 @@ This repository delivers a high-throughput, production-grade platform for carbon
 
 ### API Endpoints
 
-- **Health:**  
-  `GET /v1/health`  
-  Returns: `{"ok": true}`
 
-- **Budget Optimizer:**  
-  `POST /v1/budget/optimize`  
-  Request:  
-  ```json
-  {
-    "total_budget_usd": 1000,
-    "max_total_carbon_g": 500,
-    "campaigns": [ ... ]
-  }
-  ```
-  Response:  
-  ```json
-  {
-    "allocation_usd": { "c1": 600, "c2": 400 }
-  }
-  ```
+**Key API Endpoints**
 
-- **Attribution, Anomaly, Stream endpoints:**  
-  See [API docs](#) for full details.
+- **Health Check**
+  - `GET /v1/health` → `{ "ok": true }`
+
+- **Budget Optimizer**
+  - `POST /v1/budget/optimize`
+    - Request:
+      ```json
+      {
+        "total_budget_usd": 1000,
+        "max_total_carbon_g": 500,
+        "campaigns": [ ... ]
+      }
+      ```
+    - Response:
+      ```json
+      {
+        "allocation_usd": { "c1": 600, "c2": 400 }
+      }
+      ```
+
+- **Attribution (Channel Weights)**
+  - `GET /v1/attribution/channels` → `{ "channel_weights": { ... } }`
+
+- **Channel KPIs**
+  - `GET /v1/metrics/channels` → `[ { "channel": ..., "emissions_g": ..., "conversions": ..., ... } ]`
+
+- **Journey KPIs**
+  - `GET /v1/journeys` → `[ { "user_id": ..., "path": [...], "emissions_g": ..., ... } ]`
+
+- **Anomaly Detection**
+  - `POST /v1/anomaly/score`
+    - Request: `{ "series": [ ... ] }`
+    - Response: `{ "z": [...], "flags": [...] }`
+
+- **Real-Time Campaign Metrics**
+  - `GET /v1/rt/campaign/{campaign_id}` → `{ "campaign_id": ..., "metrics": { ... } }`
 
 ### Testing
 
